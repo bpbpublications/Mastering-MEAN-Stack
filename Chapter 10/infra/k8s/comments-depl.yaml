@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: comments-depl
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: comments
+  template: 
+    metadata:
+      labels:
+        app: comments 
+    spec:
+      containers:
+        - name: comments
+          image: pinakinc/comments
+          env:
+            - name: POSTS_NATS_CLIENT_ID
+              valueFrom: 
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POSTS_NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: POSTS_NATS_CLUSTER_ID
+              value: 'blog'
+            - name: POSTS_MONGO_URI
+              value: 'mongodb://comments-mongo-srv:27017/comments'
+            - name: AUTH_JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: AUTH_JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comments-srv
+spec:
+  selector:
+    app: comments
+  ports: 
+    - name: comments
+      protocol: TCP
+      port: 3100
+      targetPort: 3100    

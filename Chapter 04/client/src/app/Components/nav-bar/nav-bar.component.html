@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-4">
+  <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">Student Blog</a>
+      <button type="button" data-toggle="collapse" data-target="#navbar-menu" class="navbar-toggler">
+           <span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbar-menu">
+          <ul class="navbar-nav mr-auto">
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" ><a class="nav-link" routerLink="/home">Home</a></li>
+          </ul>
+  <ul class="navbar-nav">
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="nav-link" routerLink="/register">Register</a></li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="nav-link" routerLink="/profile">Profile</a></li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="nav-link" routerLink="/dashboard">Dashboard</a></li>
+    <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="nav-link" routerLink="/blog">Blog</a></li>
+    <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="nav-link" routerLink="/login">Login</a></li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="nav-link" routerLink="/logout">Logout</a></li>
+          </ul>
+          <form>
+              <input type="text" placeholder="Search" class="form-control">
+          </form>
+      </div>
+  </div>
+</nav>
